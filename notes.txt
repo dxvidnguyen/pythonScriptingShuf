@@ -1,0 +1,77 @@
+Assignment 2 Notes Files
+
+Part 2.1
+
+For exponents, in emacs we write (expt x y) ;; x^y
+- ie. 2^3^4 would be (expt 2 (expt 3 4))
+Seeing if 2^3^4 would fit in a 64 bit signed integer
+(if (< (expt 2 (expt 3 4)) (expt 2 63) )
+    t
+  nil)
+nil
+- using this expressiong we got nil which means that it will not fit
+- we know this will not fit bc 2^3^4 = 2^81
+- also we have a 64 bit signed integer so the max is 2^63
+- 2^3^4 goes over the max (sanity check without using emacs)
+
+After typing C-h b for teh keybinds
+- typing C-h k C-h k leads me to a page with info about what the keys C-h k do in combination 
+-Info found on C-h k
+-C-h k runs the command describe-key (found in global-map), which is an interactive compiled Lisp function in ‘help.el’.
+After typing C-h k M-SPC
+- typing C-h k C-h k leads me to a page	with info about	what the keys C-h k do in combination
+- Info found on M-SPC (M stands for meta)
+- M-SPC runs the command just-one-space (found in global-map), which is
+an interactive compiled Lisp function in ‘simple.el’.
+Note: This happens because when we type C-h k it prompts the command describe-key and then when we enter C-h k or M-SPC, the command takes us to a description of the key combination.
+
+Note to self: C-x o to switch between windows
+
+Going into the source code for M-SPC and has description below
+(defun just-one-space (&optional n)
+  "Delete all spaces and tabs around point, leaving one space (or N space\
+s).                                                                       
+If N is negative, delete newlines as well, leaving -N spaces.             
+See also `cycle-spacing'."
+
+What does M-: do?
+M-: runs the command eval-expression (found in global-map), which is
+an interactive compiled Lisp function in ‘simple.el’.
+
+What does M-x do?
+M-x runs the command execute-extended-command (found in global-map),
+which is an interactive compiled Lisp function in ‘simple.el’.
+
+With the M-SPC, we can go up to the characters and change it so that we have just one space between two words
+With the M-:, we can evaluate a lisp expression with the bar instead of typing the expression in the buffer and using the C-j keys. With the M-: we can type a lisp expression and have it evaluated without writing the values down in the buffer. 
+With M-x, we are prompted to put in a command and then that command will be executed. ie: we use M-x and prompt the command just-one-space will do the same thing as the M-SPC
+
+Lab 2.2
+
+M-x load-file filepath
+--> file path is ~\A2\which-line.el
+
+Need to make sure it does not count new line
+  Use an if statement to do this
+
+Comments are listed in the code.
+
+
+Homework: Python Scripting
+
+What happens when randline.py is invoked on an empty file(/dev/null) ?
+Note:this is python 2
+- command: python randline.py /dev/null
+IndexError: list index out of range
+We get an index error because the file is empty!
+
+What happens when this script is invoked with Python 3 rather than Python 2, and why?
+Note: run python3 by using python3 instead of python
+- command: python3 randline.py /dev/null
+  There is a syntax error!
+
+
+-e, --echo :: treat each ARG as an input line
+-i, --input-range=LO-HI :: treat each number LO through HI as an input line
+-n, --head-count=COUNT :: output at most COUNT lines
+-r, --repeat :: output lines can be repeated
